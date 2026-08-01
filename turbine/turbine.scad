@@ -5,10 +5,10 @@ module regular_polygon(order = 5, r=1){
  }
 
 height = 180;
-layer_height = 0.2;
+layer_height = 1.0;
 main_diameter = 70;
-divs_per_circle = 8;
-spiral_radius = 3;
+divs_per_circle = 3;
+spiral_radius = 0;
 circle_radius = 45;
 swell = 15;
 
@@ -17,15 +17,15 @@ for (h = [0:layer_height:height]) {
     translate([0,0,h]) rotate([0,0,0]) {
         linear_extrude(layer_height) {
             difference() {
-                hull() {
+                // hull() {
                     union() {
                         for (t = [0:360/divs_per_circle:360]) {
                             rotate([0,0,t]) translate([main_diameter/2 + swell*sin((h/height)*180),0,0]) {
-                                rotate([0,0,h*8]) translate([spiral_radius,0,0]) rotate([0,0,-h*6.5]) regular_polygon(order=10, r=circle_radius + (15 * sin((h/height)*180)));
+                                rotate([0,0,h*2.5]) translate([spiral_radius,0,0]) rotate([0,0,-h*1]) regular_polygon(order=5, r=circle_radius + (15 * sin((h/height)*180)));
                             }
                         }
                     }
-                }
+                // }
                 circle(d=40, $fa=1);
             }
         }
