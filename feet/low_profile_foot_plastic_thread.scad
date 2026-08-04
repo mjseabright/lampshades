@@ -1,4 +1,4 @@
-use <foot.scad>;
+use <low_profile_foot.scad>;
 
 length = 15;          // total length, flat end to point (mm)
 outer_diameter = 10;  // diameter of the cylindrical body (mm)
