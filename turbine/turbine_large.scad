@@ -1,8 +1,5 @@
-module regular_polygon(order = 5, r=1){
-     angles=[ for (i = [0:order-1]) i*(360/order) ];
-     coords=[ for (th=angles) [r*cos(th), r*sin(th)] ];
-     polygon(coords);
- }
+use <turbine.scad>;
+use <../mounting_functions.scad>;
 
 height = 240;             // total height of the lampshade (mm)
 layer_height = 0.2;       // vertical distance between cross-sections (mm); match to your printer's layer height
@@ -18,26 +15,21 @@ foot_hole_radius = 70;    // radius from the shade's center at which the foot-mo
 
 
 difference() {
-    for (h = [0:layer_height:height]) {
-        translate([0,0,h]) rotate([0,0,0]) {
-            linear_extrude(layer_height) {
-                difference() {
-                    union() {
-                        for (t = [0:360/divs_per_circle:360]) {
-                            rotate([0,0,t]) translate([main_diameter/2,0,0]) {
-                                rotate([0,0,350/blade_sides/2]) // fixed per-blade orientation offset (roughly half a polygon sector), doesn't change with height
-                                rotate([0,0,h*(blade_rotations*360/height)]) regular_polygon(order=blade_sides, r=circle_radius + (blade_swell * sin((h/height)*180)));
-                            }
-                        }
-                    }
-                    circle(d=center_hole_diameter, $fa=1);
-                }
-            }
-        }
-    }
-    // one straight vertical foot-mounting hole per blade, same angle as the blade, at foot_hole_radius, full height
-    for (t = [0:360/divs_per_circle:360]) {
-        rotate([0,0,t]) translate([foot_hole_radius,0,-1])
-            cylinder(h=height+layer_height+2, d=foot_hole_diameter, $fn=24);
+    turbine(
+        height = height,
+        layer_height = layer_height,
+        main_diameter = main_diameter,
+        divs_per_circle = divs_per_circle,
+        blade_sides = blade_sides,
+        circle_radius = circle_radius,
+        blade_swell = blade_swell,
+        blade_rotations = blade_rotations
+    );
+
+    // base/mounting geometry: center adaptor hole + one straight vertical
+    // foot-mounting hole per blade, same angle as the blade, at foot_hole_radius
+    union() {
+        center_hole(height = height, diameter = center_hole_diameter);
+        foot_holes(hole_diameter = foot_hole_diameter, pattern_radius = foot_hole_radius, num_holes = divs_per_circle, height = height);
     }
 }

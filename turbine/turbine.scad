@@ -1,33 +1,33 @@
-module regular_polygon(order = 5, r=1){
-     angles=[ for (i = [0:order-1]) i*(360/order) ];
-     coords=[ for (th=angles) [r*cos(th), r*sin(th)] ];
-     polygon(coords);
- }
+use <../geometry_functions.scad>;
 
-height = 180;
-layer_height = 1.0;
-main_diameter = 70;
-divs_per_circle = 3;
-spiral_radius = 0;
-circle_radius = 45;
-swell = 15;
-
-
-for (h = [0:layer_height:height]) {
-    translate([0,0,h]) rotate([0,0,0]) {
-        linear_extrude(layer_height) {
-            difference() {
-                // hull() {
-                    union() {
-                        for (t = [0:360/divs_per_circle:360]) {
-                            rotate([0,0,t]) translate([main_diameter/2 + swell*sin((h/height)*180),0,0]) {
-                                rotate([0,0,h*2.5]) translate([spiral_radius,0,0]) rotate([0,0,-h*1]) regular_polygon(order=5, r=circle_radius + (15 * sin((h/height)*180)));
-                            }
+// Main turbine blade geometry, with no base/mounting features (center hole,
+// foot holes, etc.) — those are added by the files that use this module,
+// so the same blade shape can be reused across different size/mount configs.
+module turbine(
+    height = 240,
+    layer_height = 0.2,
+    main_diameter = 80,
+    divs_per_circle = 3,
+    blade_sides = 5,
+    circle_radius = 60,
+    blade_swell = 32,
+    blade_rotations = 1
+) {
+    for (h = [0:layer_height:height]) {
+        translate([0,0,h]) rotate([0,0,0]) {
+            linear_extrude(layer_height) {
+                union() {
+                    for (t = [0:360/divs_per_circle:360]) {
+                        rotate([0,0,t]) translate([main_diameter/2,0,0]) {
+                            rotate([0,0,350/blade_sides/2]) // fixed per-blade orientation offset (roughly half a polygon sector), doesn't change with height
+                            rotate([0,0,h*(blade_rotations*360/height)]) regular_polygon(order=blade_sides, r=circle_radius + (blade_swell * sin((h/height)*180)));
                         }
                     }
-                // }
-                circle(d=40, $fa=1);
+                }
             }
         }
     }
 }
+
+// Standalone preview with default parameters
+turbine();
