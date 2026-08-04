@@ -5,7 +5,9 @@ A collection of 3D printable lampshades designed in OpenSCAD. More information o
 They are [here](https://www.printables.com/social/308094-mjseabright/collections/207685). Some of them are quite big files, so they are hosted on Printables rather than GitHub. 
 
 ## Editing the Designs
-All of the designs are done in [OpenSCAD](https://openscad.org/), so just [download](https://openscad.org/downloads.html) and install OpenSCAD and get to work. Each design has parameters for the main dimenions which makes them easily customisable. I suggest you change the layer height parameter to something like 2mm (rather than 0.2mm) while playing around with designs as it will be much quicker. Then change it back for the final render. 
+All of the designs are done in [OpenSCAD](https://openscad.org/), so just [download](https://openscad.org/downloads.html) and install OpenSCAD and get to work. Each design's shape lives as a reusable module in `<design>.scad`, e.g. [turbine.scad](turbine/turbine.scad). To actually print one, open one of the sibling files that sets the dimensions and calls that module, e.g. [turbine_small.scad](turbine/turbine_small.scad) or [turbine_large.scad](turbine/turbine_large.scad) — that's where the main dimension parameters are, making them easily customisable. I suggest you change the layer height parameter to something like 2mm (rather than 0.2mm) while playing around with designs as it will be much quicker. Then change it back for the final render.
+
+A couple of helper files at the repo root, [geometry_functions.scad](geometry_functions.scad) and [mounting_functions.scad](mounting_functions.scad), hold shapes shared across multiple designs (polygons, center holes, foot-mounting holes). You generally shouldn't need to touch these.
 
 The [noise](noise/) design is different as it uses [Python](https://www.python.org/) to generate a SCAD file that then gets rendered via OpenSCAD. Changes can be made via the parmeters at the top of the [noisey_generator.py](noise/noisey_generator.py) file. Running it will generate a new [noisey.scad](noise/noisey.scad) file, which can then be rendered by OpenSCAD.
 
