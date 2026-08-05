@@ -10,7 +10,7 @@ circle_radius = 60;     // radius of each blade's polygon shape (mm)
 blade_swell = 32;       // amplitude of the sine bulge applied to each blade's own radius over the height (mm)
 blade_rotations = 1;  // number of full 360° spins of each blade over the whole height (negative = reverse spin direction)
 center_hole_diameter = 40; // diameter of the hole through the center of the shade, for mounting on the adaptor (mm)
-foot_hole_diameter = 4.2; // diameter of each straight foot-mounting hole, bottom to top (mm)
+foot_hole_diameter = 4.5; // diameter of each straight foot-mounting hole, bottom to top (mm)
 foot_hole_radius = 70;    // radius from the shade's center at which the foot-mounting holes sit, one per blade, on the line from center through that blade's center (mm)
 
 
