@@ -8,9 +8,9 @@ foot_hole_radius = 70;    // must match foot_hole_radius in turbine_large.scad (
 mount_od = 40;            // outer diameter of the central adaptor-mount boss; must match center_hole_diameter in turbine_large.scad (mm)
 
 // TODO: tune these
-spoke_width = 6;          // width of each spoke at its tip, i.e. at the foot-mounting hole (mm)
-spoke_width_center = 12;  // width of each spoke at the center mount, tapering down to spoke_width at the tip (mm)
-spoke_height = 3;         // height of each spoke (mm)
+spoke_width = 10;          // width of each spoke at its tip, i.e. at the foot-mounting hole (mm)
+spoke_width_center = 15;  // width of each spoke at the center mount, tapering down to spoke_width at the tip (mm)
+spoke_height = 2;         // height of each spoke (mm)
 mount_id = 33;            // inner diameter of the central adaptor-mount boss, i.e. the bore the adaptor sits in (mm)
 mount_height = 30;         // height of the central adaptor-mount boss (mm)
 mount_hole_diameter = 28; // diameter of the fixing hole(s) through the mount boss (mm)
