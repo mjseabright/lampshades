@@ -11,7 +11,7 @@ spoke_width = 10;          // width of each spoke at its tip, i.e. at the foot-m
 spoke_width_center = 15;  // width of each spoke at the center mount, tapering down to spoke_width at the tip (mm)
 spoke_height = 2;         // height of each spoke (mm)
 mount_id = 33;            // inner diameter of the central adaptor-mount boss, i.e. the bore the adaptor sits in (mm)
-mount_height = 30;         // height of the central adaptor-mount boss (mm)
+mount_height = 65;         // height of the central adaptor-mount boss (mm)
 mount_hole_diameter = 28; // diameter of the fixing hole(s) through the mount boss (mm)
 
 low_pro_with_adaptor(
