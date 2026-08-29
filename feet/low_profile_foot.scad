@@ -12,13 +12,13 @@
 // outer_diameter for most of nose_height, only curving in sharply right at
 // the point.
 module foot(
-    length = 15,               // total length, flat end to point (mm)
+    length = 20,               // total length, flat end to point (mm)
     outer_diameter = 10,       // diameter of the cylindrical body (mm)
     hole_diameter = 5.7,       // diameter of the center hole in the flat end (mm)
     hole_depth = 9,            // depth of the center hole, from the flat end (mm)
-    nose_height = 14,           // height of the rounded nose, from the point up to where it meets the straight side (mm)
-    nose_top_tangent = 0.9,   // 0-1 fraction of nose_height: how long the profile stays vertical (at outer_diameter) before curving in -- higher = longer straight run, sharper turn near the point
-    nose_bottom_tangent = 0.3, // 0-1 fraction of outer_radius: how long the profile stays horizontal right at the point -- higher = flatter/rounder point, lower = sharper point
+    nose_height = 8,           // height of the rounded nose, from the point up to where it meets the straight side (mm)
+    nose_top_tangent = 1,   // 0-1 fraction of nose_height: how long the profile stays vertical (at outer_diameter) before curving in -- higher = longer straight run, sharper turn near the point
+    nose_bottom_tangent = 0.5, // 0-1 fraction of outer_radius: how long the profile stays horizontal right at the point -- higher = flatter/rounder point, lower = sharper point
     nose_segments = 24         // number of line segments used to approximate the bezier nose profile
 ) {
     outer_radius = outer_diameter / 2;
