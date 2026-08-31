@@ -2,7 +2,7 @@ use <turbine.scad>;
 use <../mounting_functions.scad>;
 
 height = 240;             // total height of the lampshade (mm)
-layer_height = 0.5;       // vertical distance between cross-sections (mm); match to your printer's layer height
+layer_height = 0.2;       // vertical distance between cross-sections (mm); match to your printer's layer height
 main_diameter = 90;     // diameter of the ring the blades are centered on, before adding blade radius (mm)
 divs_per_circle = 3;      // number of blades repeated around the circle
 blade_sides = 5;          // number of sides of each blade's polygon shape (e.g. 5 = pentagon); also sets each blade's fixed rotational alignment below
